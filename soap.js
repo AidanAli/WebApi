@@ -4,12 +4,14 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');
 const xml2js = require('xml2js'); // Import xml2js to parse the SOAP response
-
 const app = express();
-const port = 3001;
+require('dotenv').config();
 
-// Replace with your Discord WebHook URL
-const discordWebHookUrl = 'https://discord.com/api/webhooks/1262266097562812446/fPoMWwPWXc3UCcpQes_SXmG_lp1bKDF4FUDPCpgARl1gd1W3UQ7lpAzEyHUvIeXnCyML';
+
+// .env Port Number
+const port = process.env.port
+// Replace your .env DiscordWebHookUrl
+const discordWebHookUrl = process.env.discordWebHookUrl;
 
 app.use(bodyParser.json());
 app.use(cors()); // Enable CORS for all routes
@@ -117,4 +119,6 @@ app.post('/api/register', (req, res) => {
 // Start the server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
+    console.log(port)
+
 });
